@@ -28,9 +28,8 @@ public:
 	void Add(const T& value); //Mark
 	Set<T>& operator+=(const Set<T>& S); //Mark
 	bool Set<T>::Contains(const T& value) const // Mark
-		Set<T>& Intersection(const Set<T>& S); // Mark
 	Set<T>& Difference(const Set<T>& S);  //Mark
-	Set<T>& Set<T>::Intersection(const Set<T>& S);
+	Set<T>& Set<T>::Intersection(const Set<T>& S);// Mark
 
 	unsigned Size() const;//Ivan
 
@@ -112,6 +111,11 @@ inline void Set<T>::Add(const T& value)
 	newNode->next = head;
 	head = newNode;
 	++size;
+}
+template<typename T>
+inline Set<T>& Set<T>::operator+=(const Set<T>& S)
+{
+	
 }
 template<typename T>
 inline Set<T>& Set<T>::Intersection(const Set<T>& S)

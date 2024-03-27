@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 template<typename T>
-class Set
+class Set						// Ivan
 {
 private:
 	template<typename T>
@@ -19,20 +19,22 @@ private:
 	List head;
 	unsigned size;
 public:
-	~Set();//Artem
+	~Set();						// Artem
 
-	Set<T>& operator=(const Set<T>&); //Ivan
-	Set();//Ivan
-	Set(const Set<T>& S); //Artem
+	Set<T>& operator=(const Set<T>&); 		// Ivan
+	Set();						// Ivan
+	Set(const Set<T>& S); 				// Artem
+	Set(const T* iterable, unsigned iterableSize);	// Ivan
+	explicit Set(const T& value);			// Ivan
 
-	void Add(const T& value); //Mark
-	Set<T>& operator+=(const Set<T>& S); //Mark
-	bool Set<T>::Contains(const T& value) const // Mark
-		Set<T>& Intersection(const Set<T>& S); // Mark
-	Set<T>& Difference(const Set<T>& S);  //Mark
-	Set<T>& Set<T>::Intersection(const Set<T>& S);
+	void Add(const T& value); 			// Mark
+	Set<T>& operator+=(const Set<T>& S); 		// Mark
+	bool Set<T>::Contains(const T& value) const 	// Mark
+	Set<T>& Intersection(const Set<T>& S); 		// Mark
+	Set<T>& Difference(const Set<T>& S);  		// Mark
+	Set<T>& Set<T>::Intersection(const Set<T>& S); 	// Mark
 
-	unsigned Size() const;//Ivan
+	unsigned Size() const;				// Ivan
 
 	void Print(std::ostream& os = std::cout) const; // Artem
 };
@@ -49,6 +51,28 @@ inline Set<T>::Set(const Set<T>& S)
 	}
 }
 
+template<typename T>
+inline Set<T>::Set(const T* iterable, unsigned iterableSize)
+{
+	head = new Set<T>::Node<T>(0);
+	List futureHead = head;
+	for (unsigned i = 0; i < iterableSize; ++i)
+	{
+		size = i;
+		futureHead->next = new Set<T>::Node<T>(iterable[i]);
+		futureHead = futureHead->next;
+	}
+	List victim = head;
+	head = head->next;
+	delete victim;
+}
+
+template<typename T>
+inline Set<T>::Set(const T& value)
+{
+	head = new Set<T>::Node<T>(value);
+	size = 1;
+}
 
 template<typename T>
 inline unsigned Set<T>::Size() const
@@ -82,6 +106,11 @@ inline Set<T>& Set<T>::operator=(const Set<T>&)
 template<typename T>
 inline void Set<T>::Print(std::ostream& os) const
 {
+	if (size == 0)
+	{
+		os << "{ empty set }\n";
+		return;
+	}
 	Set<T>::Node<T>* current = head;
 	while (current != nullptr)
 	{
@@ -113,6 +142,7 @@ inline void Set<T>::Add(const T& value)
 	head = newNode;
 	++size;
 }
+
 template<typename T>
 inline Set<T>& Set<T>::Intersection(const Set<T>& S)
 {
@@ -173,6 +203,7 @@ inline Set<T>& Set<T>::operator=(const Set<T>& S)
 	size = S.size;
 	return *this;
 }
+
 template<typename T>
 bool Set<T>::Contains(const T& value) const
 {

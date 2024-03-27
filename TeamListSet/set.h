@@ -92,17 +92,6 @@ inline Set<T>::~Set()
 }
 
 template<typename T>
-inline Set<T>& Set<T>::operator=(const Set<T>&)
-{
-	Set<T> result = new Set();
-	Set<T>* prtToHead = head;
-	while (prtToHead != nullptr)
-	{
-
-	}
-}
-
-template<typename T>
 inline void Set<T>::Print(std::ostream& os) const
 {
 	if (size == 0)

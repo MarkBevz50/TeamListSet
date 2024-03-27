@@ -29,7 +29,7 @@ public:
 
 	void Add(const T& value); 			// Mark
 	Set<T>& operator+=(const Set<T>& S); 		// Mark
-	bool Set<T>::Contains(const T& value) const 	// Mark
+	bool Contains(const T& value) const 		// Mark
 	Set<T>& Intersection(const Set<T>& S); 		// Mark
 	Set<T>& Difference(const Set<T>& S);  		// Mark
 

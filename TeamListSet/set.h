@@ -27,10 +27,10 @@ public:
 
 	void Add(const T& value); //Mark
 	Set<T>& operator+=(const Set<T>& S); //Mark
-	bool Set<T>::Contains(const T& value) const;// Mark
+	bool Contains(const T& value) const;// Mark
 	Set<T>& Difference(const Set<T>& S);  //Mark
-	Set<T>& Set<T>::Intersection(const Set<T>& S);// Mark
-
+	Set<T>& Intersection(const Set<T>& S);// Mark
+	void Remove(const T& value); // To do
 	unsigned Size() const;//Ivan
 
 	void Print(std::ostream& os = std::cout) const; // Artem
@@ -64,17 +64,6 @@ inline Set<T>::~Set()
 		Set<T>::Node<T>* temp = current;
 		current = current->next;
 		delete[] temp;
-	}
-}
-
-template<typename T>
-inline Set<T>& Set<T>::operator=(const Set<T>&)
-{
-	Set<T> result = new Set();
-	Set<T>* prtToHead = head;
-	while (prtToHead != nullptr)
-	{
-
 	}
 }
 
@@ -113,12 +102,7 @@ inline void Set<T>::Add(const T& value)
 	++size;
 }
 template<typename T>
-inline Set<T>& Set<T>::operator+=(const Set<T>& S)
-{
-	
-}
-template<typename T>
-inline Set<T>& Set<T>::Intersection(const Set<T>& S)
+inline Set<T>& Set<T>::Intersection(const Set<T>& S)  //trouble to fix
 {
 	Set<T> result;
 	Node <T>* current = head;
@@ -131,24 +115,19 @@ inline Set<T>& Set<T>::Intersection(const Set<T>& S)
 		current = current->next;
 	}
 	*this = result;
-	return *this
+	return *this;
 }
 
 template<typename T>
-inline Set<T>& Set<T>::Difference(const Set<T>& S)
+inline Set<T>& Set<T>::Difference(const Set<T>& S)   // implement with remove function
 {
 	Set<T> result;
 	Node<T>* current = head;
 	while (current != nullptr)
 	{
-		Node<T>* temp = S.head;
-		while (temp != nullptr)
+		if (!S.Contains(current->value))
 		{
-			if (current->value != temp->value)
-			{
-				result.Add(temp->value)
-			}
-			temp = temp->next;
+			result.Add(current->value);
 		}
 		current = current->next;
 	}
@@ -181,7 +160,7 @@ template<typename T>
 bool Set<T>::Contains(const T& value) const
 {
 	Node<T>* Current = head;
-	while (current != nullptr)
+	while (Current != nullptr)
 	{
 		if (Current->value = value)
 		{

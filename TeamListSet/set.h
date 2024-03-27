@@ -32,7 +32,6 @@ public:
 	bool Set<T>::Contains(const T& value) const 	// Mark
 	Set<T>& Intersection(const Set<T>& S); 		// Mark
 	Set<T>& Difference(const Set<T>& S);  		// Mark
-	Set<T>& Set<T>::Intersection(const Set<T>& S); 	// Mark
 
 	unsigned Size() const;				// Ivan
 

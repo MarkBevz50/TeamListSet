@@ -27,7 +27,7 @@ public:
 
 	void Add(const T& value); //Mark
 	Set<T>& operator+=(const Set<T>& S); //Mark
-	bool Set<T>::Contains(const T& value) const // Mark
+	bool Set<T>::Contains(const T& value) const;// Mark
 	Set<T>& Difference(const Set<T>& S);  //Mark
 	Set<T>& Set<T>::Intersection(const Set<T>& S);// Mark
 
@@ -190,4 +190,15 @@ bool Set<T>::Contains(const T& value) const
 		Current = Current->next;
 	}
 	return false;
+}
+template<typename T>
+Set<T>& Set<T>::operator+=(const Set<T>& S)
+{
+	Node<T>* current = S.head;
+	while (current != nullptr)
+	{
+		Add(current->value);
+		current = current->next;
+	}
+	return *this;
 }

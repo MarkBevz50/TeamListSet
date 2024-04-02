@@ -30,7 +30,7 @@ public:
 	void Add(const T& value);						// Ivan
 	Set<T>& operator+=(const Set<T>& S);			// Mark
 	bool Contains(const T& value) const;			// Mark
-	Set<T>& Difference(const Set<T>& S);			// Mark
+	Set<T>& Difference(const Set<T>& S);			// Mark & Ivan
 	Set<T>& Intersection(const Set<T>& S);			// Mark
 	void Remove(const T& value);					// To do
 	unsigned Size() const;							// Ivan
@@ -220,17 +220,17 @@ inline Set<T>& Set<T>::Intersection(const Set<T>& S)  //trouble to fix
 template<typename T>
 inline Set<T>& Set<T>::Difference(const Set<T>& S)  
 {
-	Set<T> result;
+	Set<T>* result = new Set<T>;
 	Node<T>* current = head;
 	while (current != nullptr)
 	{
 		if (!S.Contains(current->value))
 		{
-			result.Add(current->value);
+			result->Add(current->value);
 		}
 		current = current->next;
 	}
-	return result;
+	return *result;
 }
 
 template<typename T>

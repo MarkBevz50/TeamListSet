@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <exception>
 template<typename T>
 class Set
 {
@@ -60,17 +61,10 @@ inline Set<T>::Set(const T& value)
 template<typename T>
 inline Set<T>::Set(const T* iterable, unsigned iterableSize)
 {
-	head = new Set<T>::Node<T>(0);
-	List futureHead = head;
 	for (unsigned i = 0; i < iterableSize; ++i)
 	{
-		size = i;
-		futureHead->next = new Set<T>::Node<T>(iterable[i]);
-		futureHead = futureHead->next;
+		this->Add(iterable[i]);
 	}
-	List victim = head;
-	head = head->next;
-	delete victim;
 }
 
 template<typename T>

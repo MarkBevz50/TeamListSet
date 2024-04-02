@@ -51,6 +51,30 @@ inline Set<T>::Set(const Set<T>& S)
 		otherCurrent = otherCurrent->next;
 	}
 }
+template<typename T>
+void Set<T>::Remove(const T& value) {
+	Node<T>* current = head;
+	Node<T>* previous = nullptr;
+	if (!Contains(value))
+	{
+		std::cout << "No such value in the set\n";
+	}
+	while (current != nullptr) {
+		if (current->value == value) {
+			if (previous == nullptr) {
+				head = current->next;
+			}
+			else {
+				previous->next = current->next;
+			}
+			delete current;
+			size--;
+			return;
+		}
+		previous = current;
+		current = current->next;
+	}
+}
 
 template<typename T>
 inline Set<T>::Set(const T& value)

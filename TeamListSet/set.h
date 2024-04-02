@@ -113,6 +113,8 @@ inline Set<T>::~Set()
 		current = current->next;
 		delete[] temp;
 	}
+	head = nullptr;
+	size = 0;
 }
 
 template<typename T>

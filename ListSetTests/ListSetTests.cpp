@@ -40,6 +40,16 @@ namespace ListSetTests
 			Assert::IsTrue(A.Contains(4));
 			Assert::IsFalse(A.Contains(0));
 		}
+		TEST_METHOD(Destructor)
+		{
+			Set<int> A;
+			A.Add(1);
+			Assert::IsFalse(A.IsEmpty());
+			Assert::IsFalse(A.Contains(0));
+			A.~Set();
+			Assert::IsTrue(A.IsEmpty());
+			Assert::IsFalse(A.Contains(0));
+		}
 	};
 	TEST_CLASS(Operators)
 	{

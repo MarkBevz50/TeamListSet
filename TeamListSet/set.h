@@ -19,20 +19,22 @@ private:
 	List head;
 	unsigned size;
 public:
-	~Set();//Artem
+	~Set();											// Artem
 
-	Set<T>& operator=(const Set<T>&); //Ivan
-	Set();//Ivan
-	Set(const Set<T>& S); //Artem
+	Set<T>& operator=(const Set<T>&);				// Ivan
+	Set();											// Ivan
+	Set(const Set<T>& S);							// Artem
+	Set(const T* iterable, unsigned iterableSize);	// Ivan
+	explicit Set(const T& value);					// Ivan
 
-	void Add(const T& value); //Ivan
-	Set<T>& operator+=(const Set<T>& S); //Mark
-	bool Contains(const T& value) const;// Mark
-	Set<T>& Difference(const Set<T>& S);  //Mark
-	Set<T>& Intersection(const Set<T>& S);// Mark
-	void Remove(const T& value); // To do
-	unsigned Size() const;//Ivan
-	bool isEmpty() const; // Mark
+	void Add(const T& value);						// Ivan
+	Set<T>& operator+=(const Set<T>& S);			// Mark
+	bool Contains(const T& value) const;			// Mark
+	Set<T>& Difference(const Set<T>& S);			// Mark
+	Set<T>& Intersection(const Set<T>& S);			// Mark
+	void Remove(const T& value);					// To do
+	unsigned Size() const;							// Ivan
+	bool IsEmpty() const;							// Mark
 	void Print(std::ostream& os = std::cout) const; // Artem & Mark
 };
 
@@ -49,7 +51,30 @@ inline Set<T>::Set(const Set<T>& S)
 }
 
 template<typename T>
-inline bool Set<T>::isEmpty() const
+inline Set<T>::Set(const T& value)
+{
+	head = new Set<T>::Node<T>(value);
+	size = 1;
+}
+
+template<typename T>
+inline Set<T>::Set(const T* iterable, unsigned iterableSize)
+{
+	head = new Set<T>::Node<T>(0);
+	List futureHead = head;
+	for (unsigned i = 0; i < iterableSize; ++i)
+	{
+		size = i;
+		futureHead->next = new Set<T>::Node<T>(iterable[i]);
+		futureHead = futureHead->next;
+	}
+	List victim = head;
+	head = head->next;
+	delete victim;
+}
+
+template<typename T>
+inline bool Set<T>::IsEmpty() const
 {
 return size == 0;;
 }
@@ -75,7 +100,7 @@ template<typename T>
 inline void Set<T>::Print(std::ostream& os) const
 {
 	Set<T>::Node<T>* current = head;
-	if (isEmpty())
+	if (IsEmpty())
 	{
 		os<< "Empty set.";
 	}

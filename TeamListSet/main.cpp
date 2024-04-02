@@ -1,5 +1,6 @@
 #include <iostream>
 #include "set.h" // Assuming Set class is defined in Set.h
+#include "student.h"
 
 int main() {
 
@@ -36,5 +37,13 @@ int main() {
     set4.Add("love");
     set4.Add("you");
     set4.Print();
+    Set<Student> set5;
+    Student A("Mark", 17);
+    Student B("Artem", 17);
+    Student C("Ivan", 178);
+    set5.Add(A);
+    set5.Add(B);
+    set5.Add(C);
+    set5.Print();
     return 0;
 }

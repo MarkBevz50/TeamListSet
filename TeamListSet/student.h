@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
 
-class Student
+class Student       //Mark
 {
 private:
-    std::string name;
+    std::string name;     
     int age;
 
 public:

@@ -32,7 +32,7 @@ public:
 	bool Contains(const T& value) const;			// Mark
 	Set<T> Difference(const Set<T>& S)const;			// Mark & Ivan
 	Set<T> Intersection(const Set<T>& S)const;			// Mark
-	void Remove(const T& value);					// To do
+	void Remove(const T& value);					// Mark
 	unsigned Size() const;							// Ivan
 	bool IsEmpty() const;							// Mark
 	void Print(std::ostream& os = std::cout) const; // Artem & Mark

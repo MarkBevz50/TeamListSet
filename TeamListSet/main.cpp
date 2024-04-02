@@ -13,9 +13,9 @@ int main() {
         set2.Add(3);
         set2.Add(4);
 
-        Set<int> intersectionSet = set1.Intersection(set2);
-        std::cout << "Intersection: ";
-        intersectionSet.Print();
+        //Set<int> intersectionSet = set1.Intersection(set2);
+        //std::cout << "Intersection: ";
+        //intersectionSet.Print();
 
         Set<int> differenceSet = set1.Difference(set2);
         std::cout << "Difference: ";

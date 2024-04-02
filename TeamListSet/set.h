@@ -30,8 +30,8 @@ public:
 	void Add(const T& value);						// Ivan
 	Set<T>& operator+=(const Set<T>& S);			// Mark
 	bool Contains(const T& value) const;			// Mark
-	Set<T>& Difference(const Set<T>& S);			// Mark
-	Set<T>& Intersection(const Set<T>& S);			// Mark
+	Set<T> Difference(const Set<T>& S) const;			// Mark
+	Set<T> Intersection(const Set<T>& S) const;			// Mark
 	void Remove(const T& value);					// To do
 	unsigned Size() const;							// Ivan
 	bool IsEmpty() const;							// Mark
@@ -201,7 +201,7 @@ inline void Set<T>::Add(const T& value)
 	++size;
 }
 template<typename T>
-inline Set<T>& Set<T>::Intersection(const Set<T>& S)  //trouble to fix
+inline Set<T> Set<T>::Intersection(const Set<T>& S) const  //trouble to fix
 {
 	Set<T> result;
 	Node <T>* current = head;
@@ -213,12 +213,12 @@ inline Set<T>& Set<T>::Intersection(const Set<T>& S)  //trouble to fix
 		}
 		current = current->next;
 	}
-	*this = result;
-	return *this;
+	/**this = result;*/
+	return result;
 }
 
 template<typename T>
-inline Set<T>& Set<T>::Difference(const Set<T>& S)  
+inline Set<T> Set<T>::Difference(const Set<T>& S) const  
 {
 	Set<T> result;
 	Node<T>* current = head;

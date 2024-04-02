@@ -194,7 +194,7 @@ inline void Set<T>::Add(const T& value)
 			curr->next = nodeToInsert;
 			curr->next->next = remember;
 		}
-		else if (curr->next->value < value)
+		else if (curr->next->value == value)
 		{
 			delete nodeToInsert;
 			--size;

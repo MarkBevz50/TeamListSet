@@ -69,8 +69,20 @@ namespace ListSetTests
 		TEST_METHOD(Add)
 		{
 			Set<int> A;
+			A.Add(2);
+			A.Add(3);
 			A.Add(1);
+			Assert::IsTrue(A.Size() == 3);
+			A.Add(3);
+			A.Add(2);
+			A.Add(1);
+			A.Add(1);
+			A.Add(3);
+			A.Add(2);
+			Assert::IsTrue(A.Size() == 3);
 			Assert::IsTrue(A.Contains(1));
+			Assert::IsTrue(A.Contains(2));
+			Assert::IsTrue(A.Contains(3));
 		}
 
 		TEST_METHOD(Remove)

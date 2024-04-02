@@ -130,10 +130,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="set.h" />
+    <ClInclude Include="student.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="set.cpp" />
+    <ClCompile Include="student.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

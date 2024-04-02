@@ -19,7 +19,7 @@ private:
 	List head;
 	unsigned size;
 public:
-	~Set();											// Artem
+	~Set();											// Artem & Ivan
 
 	Set<T>& operator=(const Set<T>&);				// Ivan
 	Set();											// Ivan
@@ -111,7 +111,7 @@ inline Set<T>::~Set()
 	{
 		Set<T>::Node<T>* temp = current;
 		current = current->next;
-		delete[] temp;
+		delete temp;
 	}
 	head = nullptr;
 	size = 0;

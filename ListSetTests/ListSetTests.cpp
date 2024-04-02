@@ -43,6 +43,14 @@ namespace ListSetTests
 	};
 	TEST_CLASS(Operators)
 	{
-
+		TEST_METHOD(OperatorEquals)
+		{
+			int arr[] = { 1, 2, 3, 4 };
+			Set<int> A{ arr, 4 };
+			Set<int> B{ A };
+			Assert::AreNotEqual(A.Get(1), B.Get(1));
+			Assert::AreEqual(A.IsEmpty(), B.IsEmpty());
+			Assert::AreEqual(A.Size(), B.Size());
+		}
 	};
 }

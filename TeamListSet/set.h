@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <exception>
 template<typename T>
 class Set
 {
@@ -37,6 +36,8 @@ public:
 	unsigned Size() const;							// Ivan
 	bool IsEmpty() const;							// Mark
 	void Print(std::ostream& os = std::cout) const; // Artem & Mark
+
+	const T* Get(const T& value);
 };
 
 template<typename T>
@@ -104,6 +105,22 @@ inline void Set<T>::Print(std::ostream& os) const
 		current = current->next;
 	}
 	os << std::endl;
+}
+
+template<typename T>
+inline const T* Set<T>::Get(const T& value)
+{
+	T* result = nullptr;
+	Node<T>* current = head;
+	while (current != nullptr)
+	{
+		if (current->value == value)
+		{
+			result = &current->value;
+			return result;
+		}
+		current = current->next;
+	}
 }
 
 template<typename T>

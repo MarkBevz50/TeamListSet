@@ -25,15 +25,15 @@ public:
 	Set();//Ivan
 	Set(const Set<T>& S); //Artem
 
-	void Add(const T& value); //Mark
+	void Add(const T& value); //Ivan
 	Set<T>& operator+=(const Set<T>& S); //Mark
 	bool Contains(const T& value) const;// Mark
 	Set<T>& Difference(const Set<T>& S);  //Mark
 	Set<T>& Intersection(const Set<T>& S);// Mark
 	void Remove(const T& value); // To do
 	unsigned Size() const;//Ivan
-
-	void Print(std::ostream& os = std::cout) const; // Artem
+	bool isEmpty() const; // Mark
+	void Print(std::ostream& os = std::cout) const; // Artem & Mark
 };
 
 template<typename T>
@@ -48,7 +48,11 @@ inline Set<T>::Set(const Set<T>& S)
 	}
 }
 
-
+template<typename T>
+inline bool Set<T>::isEmpty() const
+{
+return size == 0;;
+}
 template<typename T>
 inline unsigned Set<T>::Size() const
 {
@@ -71,6 +75,10 @@ template<typename T>
 inline void Set<T>::Print(std::ostream& os) const
 {
 	Set<T>::Node<T>* current = head;
+	if (isEmpty())
+	{
+		os<< "Empty set.";
+	}
 	while (current != nullptr)
 	{
 		os << current->value << " ";
@@ -88,17 +96,48 @@ inline Set<T>::Set()
 template<typename T>
 inline void Set<T>::Add(const T& value)
 {
-	Node<T>* current = head;
-	while (current != nullptr)
+	Node<T>* nodeToInsert = new Node<T>(value);
+	if (head == nullptr || head->value > value)
 	{
-		if (current->value == value) {
-			continue;
-		}
-		current = current->next;
+		nodeToInsert->next = head;
+		head = nodeToInsert;
 	}
-	Node<T>* newNode = new Node<T>(value);
-	newNode->next = head;
-	head = newNode;
+	else if (head->value == value)
+	{
+		delete nodeToInsert;
+		--size;
+	}
+	else
+	{
+		Node<T>* curr = head;
+		while (curr->next != nullptr && curr->next->value < value)
+		{
+			curr = curr->next;
+		}
+		if (curr->next == nullptr)
+		{
+			if (curr->value == value)
+			{
+				delete nodeToInsert;
+				--size;
+			}
+			else
+			{
+				curr->next = nodeToInsert;
+			}
+		}
+		else if (curr->next->value > value)
+		{
+			Node<T>* remember = curr->next;
+			curr->next = nodeToInsert;
+			curr->next->next = remember;
+		}
+		else if (curr->next->value < value)
+		{
+			delete nodeToInsert;
+			--size;
+		}
+	}
 	++size;
 }
 template<typename T>
@@ -119,7 +158,7 @@ inline Set<T>& Set<T>::Intersection(const Set<T>& S)  //trouble to fix
 }
 
 template<typename T>
-inline Set<T>& Set<T>::Difference(const Set<T>& S)   // implement with remove function
+inline Set<T>& Set<T>::Difference(const Set<T>& S)  
 {
 	Set<T> result;
 	Node<T>* current = head;
@@ -131,8 +170,7 @@ inline Set<T>& Set<T>::Difference(const Set<T>& S)   // implement with remove fu
 		}
 		current = current->next;
 	}
-	*this = result;
-	return *this;
+	return result;
 }
 
 template<typename T>
@@ -162,7 +200,7 @@ bool Set<T>::Contains(const T& value) const
 	Node<T>* Current = head;
 	while (Current != nullptr)
 	{
-		if (Current->value = value)
+		if (Current->value == value)
 		{
 			return true;
 		}

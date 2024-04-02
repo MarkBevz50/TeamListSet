@@ -53,4 +53,76 @@ namespace ListSetTests
 			Assert::AreEqual(A.Size(), B.Size());
 		}
 	};
+	TEST_CLASS(Methods)
+	{
+	public:
+		TEST_METHOD(Add)
+		{
+			Set<int> A;
+			A.Add(1);
+			Assert::IsTrue(A.Contains(1));
+		}
+
+		TEST_METHOD(Remove)
+		{
+			Set<int> A;
+			A.Add(1);
+			A.Add(2);
+			A.Remove(1);
+			Assert::IsFalse(A.Contains(1));
+			Assert::IsTrue(A.Contains(2));
+		}
+
+		TEST_METHOD(Size)
+		{
+			Set<int> A;
+			A.Add(1);
+			A.Add(2);
+			Assert::AreEqual(A.Size(), static_cast<unsigned>(2));
+		}
+
+		TEST_METHOD(IsEmpty)
+		{
+			Set<int> A;
+			Assert::IsTrue(A.IsEmpty());
+			A.Add(1);
+			Assert::IsFalse(A.IsEmpty());
+		}
+
+		TEST_METHOD(Contains)
+		{
+			Set<int> A;
+			A.Add(1);
+			A.Add(2);
+			Assert::IsTrue(A.Contains(1));
+			Assert::IsFalse(A.Contains(3));
+		}
+
+		TEST_METHOD(Intersection)
+		{
+			int arr[] = { 1, 2, 3 };
+			Set<int> A{ arr, 3};
+			int barr[] = { 2,3,4 };
+			Set<int> B{ barr, 3 };
+			Set<int> result = A.Intersection(B);
+			Assert::IsTrue(result.Contains(2));
+			Assert::IsTrue(result.Contains(3));
+			Assert::IsFalse(result.Contains(1));
+			Assert::IsFalse(result.Contains(4));
+		}
+
+		TEST_METHOD(Difference)
+		{
+			int arr[] = { 1, 2, 3 };
+			Set<int> A{ arr, 3 };
+			int barr[] = { 2,3,4 };
+			Set<int> B{ barr, 3 };
+			Set<int> result = A.Difference(B);
+			Assert::IsTrue(result.Contains(1));
+			Assert::IsFalse(result.Contains(2));
+			Assert::IsFalse(result.Contains(3));
+			Assert::IsFalse(result.Contains(4));
+		}
+	};
+	
 }

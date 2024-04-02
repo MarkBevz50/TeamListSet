@@ -231,7 +231,7 @@ inline Set<T> Set<T>::Difference(const Set<T>& S) const
 		}
 		current = current->next;
 	}
-	return result;
+	return *result;
 }
 
 template<typename T>

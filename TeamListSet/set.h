@@ -19,7 +19,7 @@ private:
 	List head;
 	unsigned size;
 public:
-	~Set();											// Artem & Ivan
+	virtual ~Set();											// Artem & Ivan
 
 	Set<T>& operator=(const Set<T>&);				// Ivan
 	Set();											// Ivan

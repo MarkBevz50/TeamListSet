@@ -3,7 +3,7 @@
 template<typename T>
 class Set
 {
-private:
+protected:
 	template<typename T>
 	struct Node
 	{

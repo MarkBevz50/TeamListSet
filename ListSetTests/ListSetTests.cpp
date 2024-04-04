@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../TeamListSet/set.h"
+#include "../TeamListSet/student.h"
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace ListSetTests
@@ -69,8 +70,8 @@ namespace ListSetTests
 		TEST_METHOD(Add)
 		{
 			Set<int> A;
-			A.Add(2);
 			A.Add(3);
+			A.Add(2);
 			A.Add(1);
 			Assert::IsTrue(A.Size() == 3);
 			A.Add(3);
@@ -78,7 +79,13 @@ namespace ListSetTests
 			A.Add(1);
 			A.Add(1);
 			A.Add(3);
+			A.Add(3);
+			A.Add(1);
 			A.Add(2);
+			A.Add(2);
+			A.Add(2);
+			A.Add(3);
+			A.Add(1);
 			Assert::IsTrue(A.Size() == 3);
 			Assert::IsTrue(A.Contains(1));
 			Assert::IsTrue(A.Contains(2));

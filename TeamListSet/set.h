@@ -158,50 +158,33 @@ inline Set<T>::Set()
 template<typename T>
 inline void Set<T>::Add(const T& value)
 {
-	Node<T>* nodeToInsert = new Node<T>(value);
 	if (head == nullptr || head->value > value)
 	{
+		Node<T>* nodeToInsert = new Node<T>(value);
 		nodeToInsert->next = head;
 		head = nodeToInsert;
+		++size;
+		return;
 	}
-	else if (head->value == value)
+	Node<T>* curr = head;
+	while (curr->next != nullptr && value > curr->next->value)
 	{
-		delete nodeToInsert;
-		--size;
+		curr = curr->next;
 	}
-	else
+	if (curr->next == nullptr && value > curr->value)
 	{
-		Node<T>* curr = head;
-		while (curr->next != nullptr && curr->next->value < value)
-		{
-			curr = curr->next;
-		}
-		if (curr->next == nullptr)
-		{
-			if (curr->value == value)
-			{
-				delete nodeToInsert;
-				--size;
-			}
-			else
-			{
-				curr->next = nodeToInsert;
-			}
-		}
-		else if (curr->next->value > value)
-		{
-			Node<T>* remember = curr->next;
-			curr->next = nodeToInsert;
-			curr->next->next = remember;
-		}
-		else if (curr->next->value == value)
-		{
-			delete nodeToInsert;
-			--size;
-		}
+		curr->next = new Node<T>(value);
+		++size;
 	}
-	++size;
+	else if (curr->next != nullptr && curr->next->value > value && (curr->value > value || value > curr->value))
+	{
+		Node<T>* nodeToRemember = curr->next;
+		curr->next = new Node<T>(value);
+		curr->next->next = nodeToRemember;
+		++size;
+	}
 }
+
 template<typename T>
 inline Set<T> Set<T>::Intersection(const Set<T>& S) const  //trouble to fix
 {

@@ -69,9 +69,62 @@ namespace ListSetTests
 	public:
 		TEST_METHOD(Add)
 		{
+			// ... ... 3 front 
 			Set<int> A;
 			A.Add(3);
 			A.Add(2);
+			A.Add(1);
+			Assert::IsTrue(A.Size() == 3);
+			A.Add(3);
+			A.Add(2);
+			A.Add(1);
+			A.Add(1);
+			A.Add(3);
+			A.Add(3);
+			A.Add(1);
+			A.Add(2);
+			A.Add(2);
+			A.Add(2);
+			A.Add(3);
+			A.Add(1);
+			Assert::IsTrue(A.Size() == 3);
+			Assert::IsTrue(A.Contains(1));
+			Assert::IsTrue(A.Contains(2));
+			Assert::IsTrue(A.Contains(3));
+		}
+
+		TEST_METHOD(SecondAdd)
+		{
+			// 1 ... 3 middle
+			Set<int> A;
+			A.Add(3);
+			A.Add(1);
+			A.Add(2);
+			Assert::IsTrue(A.Size() == 3);
+			A.Add(3);
+			A.Add(2);
+			A.Add(1);
+			A.Add(1);
+			A.Add(3);
+			A.Add(3);
+			A.Add(1);
+			A.Add(2);
+			A.Add(2);
+			A.Add(2);
+			A.Add(3);
+			A.Add(1);
+			Assert::IsTrue(A.Size() == 3);
+			Assert::IsTrue(A.Contains(1));
+			Assert::IsTrue(A.Contains(2));
+			Assert::IsTrue(A.Contains(3));
+		}
+
+		TEST_METHOD(ThirdAdd)
+		{
+			// ... 2 ... front & back
+			Set<int> A;
+			A.Add(2);
+			A.Add(3);
 			A.Add(1);
 			Assert::IsTrue(A.Size() == 3);
 			A.Add(3);

@@ -50,5 +50,10 @@ int main() {
     int number;
     std::cin >> number;
     std::cout << "Your number contains " << digit(number) << " different digits\n";
+   
+    
+    
+    
+    
     return 0;
 }

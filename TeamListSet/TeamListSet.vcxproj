@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="MarkFunction.h" />
     <ClInclude Include="set.h" />
     <ClInclude Include="student.h" />
   </ItemGroup>

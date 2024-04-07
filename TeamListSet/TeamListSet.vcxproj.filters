@@ -21,6 +21,9 @@
     <ClInclude Include="student.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MarkFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="student.cpp">

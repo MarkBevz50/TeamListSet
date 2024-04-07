@@ -1,6 +1,7 @@
 #include <iostream>
 #include "set.h" // Assuming Set class is defined in Set.h
 #include "student.h"
+#include "MarkFunction.h"
 
 int main() {
 

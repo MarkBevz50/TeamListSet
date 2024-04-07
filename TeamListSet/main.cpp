@@ -45,6 +45,10 @@ int main() {
     set5.Add(A);
     set5.Add(B);
     set5.Add(C);
+
+
+
     set5.Print();                             
+   
     return 0;
 }

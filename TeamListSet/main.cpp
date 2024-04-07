@@ -45,15 +45,6 @@ int main() {
     set5.Add(A);
     set5.Add(B);
     set5.Add(C);
-    set5.Print();
-    std::cout << "Enter your Number: ";
-    int number;
-    std::cin >> number;
-    std::cout << "Your number contains " << digit(number) << " different digits\n";
-   
-    
-    
-    
-    
+    set5.Print();                             
     return 0;
 }

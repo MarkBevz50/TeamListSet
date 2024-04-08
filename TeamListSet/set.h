@@ -21,12 +21,12 @@ protected:
 public:
 	virtual ~Set();											// Artem & Ivan
 
-	Set<T>& operator=(const Set<T>&);				// Ivan
+	Set<T>& operator=(const Set<T>&);	// Ivan
 	Set();											// Ivan
 	Set(const Set<T>& S);							// Artem
 	Set(const T* iterable, unsigned iterableSize);	// Ivan
 	explicit Set(const T& value);					// Ivan
-
+	Set(std::initializer_list<T> elements);
 	void Add(const T& value);						// Ivan
 	Set<T>& operator+=(const Set<T>& S);			// Mark
 	bool Contains(const T& value) const;			// Mark
@@ -40,6 +40,12 @@ public:
 	const T* Get(const T& value);
 };
 
+template<typename T>
+Set<T>::Set(std::initializer_list<T> elements) {
+	for (const auto& elem : elements) {
+		Add(elem);
+	}
+}
 template<typename T>
 inline Set<T>::Set(const Set<T>& S)
 	: head(nullptr), size(0)

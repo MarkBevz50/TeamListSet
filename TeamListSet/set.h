@@ -26,7 +26,7 @@ public:
 	Set(const Set<T>& S);							// Artem
 	Set(const T* iterable, unsigned iterableSize);	// Ivan
 	explicit Set(const T& value);					// Ivan
-	Set(std::initializer_list<T> elements);
+	Set(std::initializer_list<T> elements);         // Mark
 	void Add(const T& value);						// Ivan
 	Set<T>& operator+=(const Set<T>& S);			// Mark
 	bool Contains(const T& value) const;			// Mark
@@ -36,7 +36,6 @@ public:
 	unsigned Size() const;							// Ivan
 	bool IsEmpty() const;							// Mark
 	void Print(std::ostream& os = std::cout) const; // Artem & Mark
-
 	const T* Get(const T& value);
 };
 
@@ -122,6 +121,17 @@ inline Set<T>::~Set()
 	head = nullptr;
 	size = 0;
 }
+//template<typename T>
+//inline std::vector<T> Set<T>::getElements() const
+//{
+//	std::vector<T> elements;
+//	Node* current = head;
+//	while (current != nullptr) {
+//		elements.push_back(current->value);
+//		current = current->next;
+//	}
+//	return elements;
+//}
 
 template<typename T>
 inline void Set<T>::Print(std::ostream& os) const
@@ -139,6 +149,8 @@ inline void Set<T>::Print(std::ostream& os) const
 	os << std::endl;
 }
 
+
+
 template<typename T>
 inline const T* Set<T>::Get(const T& value)
 {
@@ -155,40 +167,58 @@ inline const T* Set<T>::Get(const T& value)
 	}
 }
 
+
 template<typename T>
 inline Set<T>::Set()
 	: size(0), head(nullptr)
 {
 }
 
+//template<typename T>
+//inline void Set<T>::Add(const T& value)
+//{
+//	if (head == nullptr || head->value > value)
+//	{
+//		Node<T>* nodeToInsert = new Node<T>(value);
+//		nodeToInsert->next = head;
+//		head = nodeToInsert;
+//		++size;
+//		return;
+//	}
+//	Node<T>* curr = head;
+//	while (curr->next != nullptr && value > curr->next->value)
+//	{
+//		curr = curr->next;
+//	}
+//	if (curr->next == nullptr && value > curr->value)
+//	{
+//		curr->next = new Node<T>(value);
+//		++size;
+//	}
+//	else if (curr->next != nullptr && curr->next->value > value && (curr->value > value || value > curr->value))
+//	{
+//		Node<T>* nodeToRemember = curr->next;
+//		curr->next = new Node<T>(value);
+//		curr->next->next = nodeToRemember;
+//		++size;
+//	}
+//}
 template<typename T>
 inline void Set<T>::Add(const T& value)
 {
-	if (head == nullptr || head->value > value)
-	{
-		Node<T>* nodeToInsert = new Node<T>(value);
-		nodeToInsert->next = head;
-		head = nodeToInsert;
-		++size;
-		return;
+	Node<T>* newNode = new Node<T>(value);
+	newNode->next = nullptr;  
+	if (head == nullptr) {
+		head = newNode;
 	}
-	Node<T>* curr = head;
-	while (curr->next != nullptr && value > curr->next->value)
-	{
-		curr = curr->next;
+	else {
+		Node<T>* current = head;
+		while (current->next != nullptr) {
+			current = current->next;
+		}
+		current->next = newNode;
 	}
-	if (curr->next == nullptr && value > curr->value)
-	{
-		curr->next = new Node<T>(value);
-		++size;
-	}
-	else if (curr->next != nullptr && curr->next->value > value && (curr->value > value || value > curr->value))
-	{
-		Node<T>* nodeToRemember = curr->next;
-		curr->next = new Node<T>(value);
-		curr->next->next = nodeToRemember;
-		++size;
-	}
+	++size;  
 }
 
 template<typename T>
@@ -269,3 +299,4 @@ Set<T>& Set<T>::operator+=(const Set<T>& S)
 	}
 	return *this;
 }
+
